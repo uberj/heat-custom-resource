@@ -1,0 +1,35 @@
+heat_template_version: 2013-05-23
+
+parameters:
+  foo:
+    type: string
+  the_server:
+    type: string
+resources:
+  custom_config:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      group: puppet
+      inputs:
+      - name: foo
+      outputs:
+      - name: result
+      config: |
+        file {'/tmp/foo':
+          ensure   => file,
+          contents => "$::foo"
+        }
+
+  custom_deployment:
+    type: OS::Heat::SoftwareDeployment
+    properties:
+      config:
+        get_resource: custom_config
+      server:
+        get_param: the_server
+      input_values:
+        foo: { get_param: foo }
+
+outputs:
+  result:
+    value: foobar

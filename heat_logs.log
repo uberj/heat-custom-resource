@@ -1,0 +1,223 @@
+==> /var/log/heat/heat-api.log <==
+2014-08-06 08:52:06.390 22938 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-engine.log <==
+2014-08-06 08:52:06.469 5285 INFO heat.engine.service [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] template is {u'outputs': {u'result': {u'value': u'foobar'}}, u'heat_template_version': u'2013-05-23', u'parameters': {u'private_net_cidr': {u'default': u'10.0.0.0/24', u'type': u'string', u'description': u'Private network address (CIDR notation)'}, u'key_name': {u'type': u'string'}, u'image': {u'default': u'cirros', u'type': u'string'}, u'private_net_pool_end': {u'default': u'10.0.0.254', u'type': u'string', u'description': u'End of private network IP address allocation pool'}, u'private_net_gateway': {u'default': u'10.0.0.1', u'type': u'string', u'description': u'Private network gateway address'}, u'public_net_id': {u'default': u'public', u'type': u'string', u'description': u'ID of public network for which floating IP addresses will be allocated\n'}, u'private_net_pool_start': {u'default': u'10.0.0.10', u'type': u'string', u'description': u'Start of private network IP address allocation pool'}, u'private_net_name': {u'default': u'private', u'type': u'string', u'description': u'Name of private network to be created'}, u'flavor': {u'default': u'm1.medium', u'type': u'string'}}, u'resources': {u'server1_port': {u'type': u'OS::Neutron::Port', u'properties': {u'network_id': {u'get_resource': u'private_net'}, u'fixed_ips': [{u'subnet_id': {u'get_resource': u'private_subnet'}}]}}, u'mysql_server_deployment': {u'type': u'Software::Custom', u'properties': {u'foo': u'bar', u'the_server': {u'get_resource': u'server1'}}}, u'server1': {u'type': u'OS::Nova::Server', u'properties': {u'key_name': {u'get_param': u'key_name'}, u'image': {u'get_param': u'image'}, u'user_data_format': u'SOFTWARE_CONFIG', u'flavor': {u'get_param': u'flavor'}, u'networks': [{u'port': {u'get_resource': u'server1_port'}}]}}, u'private_subnet': {u'type': u'OS::Neutron::Subnet', u'properties': {u'network_id': {u'get_resource': u'private_net'}, u'gateway_ip': {u'get_param': u'private_net_gateway'}, u'cidr': {u'get_param': u'private_net_cidr'}, u'dns_nameservers': [u'8.8.8.8'], u'allocation_pools': [{u'start': {u'get_param': u'private_net_pool_start'}, u'end': {u'get_param': u'private_net_pool_end'}}]}}, u'private_net': {u'type': u'OS::Neutron::Net', u'properties': {u'name': {u'get_param': u'private_net_name'}}}, u'router': {u'type': u'OS::Neutron::Router', u'properties': {u'external_gateway_info': {u'network': {u'get_param': u'public_net_id'}}}}, u'server1_floating_ip': {u'type': u'OS::Neutron::FloatingIP', u'properties': {u'floating_network_id': {u'get_param': u'public_net_id'}, u'port_id': {u'get_resource': u'server1_port'}}}, u'router_interface': {u'type': u'OS::Neutron::RouterInterface', u'properties': {u'router_id': {u'get_resource': u'router'}, u'subnet_id': {u'get_resource': u'private_subnet'}}}}}
+2014-08-06 08:52:06.474 5285 INFO heat.engine.environment [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:52:06.475 5285 INFO heat.common.urlfetch [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Fetching data from file:///root/test_env/custom.yaml
+2014-08-06 08:52:06.481 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating Router "router"
+2014-08-06 08:52:06.481 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating Net "private_net"
+2014-08-06 08:52:06.482 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating Subnet "private_subnet"
+2014-08-06 08:52:06.482 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating Port "server1_port"
+2014-08-06 08:52:06.482 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating RouterInterface "router_interface"
+2014-08-06 08:52:06.482 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating FloatingIP "server1_floating_ip"
+2014-08-06 08:52:06.482 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating Server "server1"
+2014-08-06 08:52:06.513 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:06.587 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:06.655 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:06.729 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:06.893 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:06.963 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:07.080 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:07.338 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:07.349 5285 INFO heat.engine.resource [req-fadbd873-b068-4f0d-a7a0-656a59f20c62 None] Validating TemplateResource "mysql_server_deployment"
+2014-08-06 08:52:07.477 5285 INFO heat.engine.resource [-] creating Router "router" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:07.617 5285 INFO heat.engine.environment [req-b8ba8920-098d-49e1-a75b-d9daac1b51e0 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:52:07.727 5285 INFO heat.engine.resource [-] creating Net "private_net" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:07.919 5285 INFO heat.engine.resource [-] creating Subnet "private_subnet" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:09.085 5285 INFO heat.engine.resource [-] creating Port "server1_port" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:09.394 5285 INFO heat.engine.resource [-] creating RouterInterface "router_interface" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:10.661 5285 INFO heat.engine.resource [-] creating FloatingIP "server1_floating_ip" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:10.902 5285 INFO heat.engine.resource [-] creating Server "server1" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:10.945 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.024 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.067 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.139 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.225 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.304 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.346 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.424 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.496 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.598 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.630 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.639 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.655 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.705 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.786 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.858 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.898 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.938 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:11.991 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:12.073 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:12.118 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:13.413 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:13.457 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:14.494 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:15.576 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:16.631 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:17.722 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:18.771 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:19.859 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:20.906 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:21.962 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.012 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.104 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.169 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.203 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.266 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.348 5285 INFO heat.engine.resource [-] creating TemplateResource "mysql_server_deployment" Stack "test" [3a02bb11-160f-41ee-994f-b4d5ca1ca8c0]
+2014-08-06 08:52:23.368 5285 INFO heat.engine.resource [-] Validating SoftwareConfig "custom_config"
+2014-08-06 08:52:23.368 5285 INFO heat.engine.resource [-] Validating SoftwareDeployment "custom_deployment"
+2014-08-06 08:52:23.406 5285 INFO heat.engine.resource [-] creating SoftwareConfig "custom_config" Stack "test-mysql_server_deployment-xmeagh2ywqqt" [e3a17dd1-e26a-4bee-b9fa-6a20a9ced713]
+2014-08-06 08:52:23.424 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:23.494 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.665 5285 INFO heat.engine.resource [-] creating SoftwareDeployment "custom_deployment" Stack "test-mysql_server_deployment-xmeagh2ywqqt" [e3a17dd1-e26a-4bee-b9fa-6a20a9ced713]
+2014-08-06 08:52:24.682 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.777 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.808 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.817 5285 WARNING heat.common.keystoneclient [-] Truncating the username test-mysql_server_deployment-xmeagh2ywqqt-custom_deployment-epeg4dd2quwq to the last 64 characters.
+2014-08-06 08:52:24.817 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.832 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.858 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:24.899 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:25.040 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:25.173 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:26.316 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:27.449 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:28.584 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:29.715 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:30.845 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:31.976 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:33.107 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:34.242 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:35.377 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:36.512 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:37.642 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:38.773 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:39.903 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:41.035 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:42.166 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:43.298 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:44.428 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:45.559 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:46.689 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:47.820 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:48.951 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:50.081 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:51.212 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:52.343 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:53.474 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:54.605 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:55.738 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:56.869 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:58.000 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:52:59.131 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:00.262 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:01.393 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:02.524 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:03.660 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:04.791 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:05.921 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:07.052 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-api.log <==
+2014-08-06 08:53:07.159 22938 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-engine.log <==
+2014-08-06 08:53:07.240 5285 INFO heat.engine.environment [req-a1aee413-5766-4668-8429-096109a5a679 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:07.822 5285 INFO heat.engine.environment [req-4f1fcae2-39df-4b32-8cd5-d76d67e719d4 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:08.191 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:08.418 5285 INFO heat.engine.environment [req-03ef9cc2-8bec-416e-9251-73942267fd80 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:09.014 5285 INFO heat.engine.environment [req-cebea476-b3f1-451a-ba79-6df45904a4b4 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:09.326 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:09.594 5285 INFO heat.engine.environment [req-55668725-5299-42d5-993c-8cc0ba0db943 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:10.179 5285 INFO heat.engine.environment [req-6f96813f-6dc1-4dd1-9ae6-2104df8d3151 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:10.459 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:10.770 5285 INFO heat.engine.environment [req-3006fd42-32fb-4b78-a708-9ea54f6e3f7f None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:11.354 5285 INFO heat.engine.environment [req-f8dd374a-f4b9-48f3-b649-908d789aa2cc None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:11.593 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:11.945 5285 INFO heat.engine.environment [req-1d124730-5274-4cfe-b754-f663111dd5c2 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:12.522 5285 INFO heat.engine.environment [req-40e62095-7b30-4d51-b0f4-2b24f8a202dd None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:12.727 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:13.113 5285 INFO heat.engine.environment [req-4260420c-08aa-45c2-a558-4f048443b421 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:13.739 5285 INFO heat.engine.environment [req-1a726364-92b6-4f88-b4c0-ace111fa59e6 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:13.859 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:14.338 5285 INFO heat.engine.environment [req-32b8c35a-d721-4bdb-bbd6-1fae160100f2 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:14.913 5285 INFO heat.engine.environment [req-7e8c935a-d7d5-4299-9fc9-bb2701eecebe None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:14.989 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:15.488 5285 INFO heat.engine.environment [req-d937529b-3fe0-4551-abf1-34e33d8e9a8e None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:16.071 5285 INFO heat.engine.environment [req-07f345d1-4472-4cf5-bba6-1bbfc6962df4 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:16.122 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:16.708 5285 INFO heat.engine.environment [req-1d912a3e-e6e8-488b-ad62-32b40018d709 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+
+==> /var/log/heat/heat-api.log <==
+2014-08-06 08:53:17.234 22938 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-engine.log <==
+2014-08-06 08:53:17.254 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:17.312 5285 INFO heat.engine.environment [req-567400a9-6e6b-4d5b-9cac-3733d6c94ec3 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:17.896 5285 INFO heat.engine.environment [req-a9892953-705a-4134-9e9e-e3a60198b977 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:18.396 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:18.480 5285 INFO heat.engine.environment [req-744ee72b-b308-4884-9cf5-42fc05057169 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:19.080 5285 INFO heat.engine.environment [req-8d1a7f69-cda3-4592-b1c0-6ccf84cdbc76 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:19.526 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:19.674 5285 INFO heat.engine.environment [req-1a7577b2-698d-4d07-8a93-4fac17fdaa4e None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:20.247 5285 INFO heat.engine.environment [req-b7c79a10-ab75-4277-913d-61687faa80d2 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:20.660 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:20.835 5285 INFO heat.engine.environment [req-cce9e65e-9203-4474-911b-31eed4fb46db None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:21.415 5285 INFO heat.engine.environment [req-5dc63016-30b2-4def-8ffb-c0f9f571de9a None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:21.800 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:21.999 5285 INFO heat.engine.environment [req-8ed05fc4-3556-4a98-a9c1-da55bca508d3 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:22.581 5285 INFO heat.engine.environment [req-fa312c8c-d02d-43f3-b2af-670f5f4a191a None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:22.942 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:23.189 5285 INFO heat.engine.environment [req-48773518-1153-4a01-93de-1f1a0b129628 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:23.777 5285 INFO heat.engine.environment [req-32f0c3b3-c1b6-4417-9843-bb93bab36c0e None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:24.081 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:24.355 5285 INFO heat.engine.environment [req-7309b337-82c9-46dd-a820-3b7c1b3e1837 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:24.941 5285 INFO heat.engine.environment [req-6f710cfc-3d03-45a1-a89f-c02654d171d6 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:25.214 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:25.514 5285 INFO heat.engine.environment [req-dbdf4583-5397-4cec-977f-d13c0a3e50d2 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:26.090 5285 INFO heat.engine.environment [req-a5a297f4-a604-415f-ae38-f5748d5cd191 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:26.346 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:26.694 5285 INFO heat.engine.environment [req-f386515a-3ff3-44ae-a00c-74a6ca33ba39 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:27.289 5285 INFO heat.engine.environment [req-838d3e22-8345-4820-a4b3-1cd692fbc7cd None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:27.483 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-api.log <==
+2014-08-06 08:53:27.824 22938 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-engine.log <==
+2014-08-06 08:53:27.899 5285 INFO heat.engine.environment [req-27dfb09d-1d30-429a-be50-f1ae7d2f2e6e None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:28.573 5285 INFO heat.engine.environment [req-44ca15d1-81a4-457a-976e-7d10d341778c None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:28.615 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:29.182 5285 INFO heat.engine.environment [req-1c5b158e-6940-4172-bf8f-5e03d7f73159 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:29.761 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:29.782 5285 INFO heat.engine.environment [req-3477f1c3-f923-4fa8-ac02-a48706564d7e None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:30.393 5285 INFO heat.engine.environment [req-7e2e9685-0d33-4d7d-9b9c-a47d16e9bb79 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:30.894 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:31.013 5285 INFO heat.engine.environment [req-aea76f14-be42-429a-b1b9-282493cc4295 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:31.610 5285 INFO heat.engine.environment [req-a8fc0e2c-d499-47ad-beda-013bc57a320a None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:32.029 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:32.373 5285 INFO heat.engine.environment [req-28f2fecc-f830-4480-bb24-b373871f3173 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:32.949 5285 INFO heat.engine.environment [req-dcc5f95c-c9c8-4c7c-b8ff-0b61ab2d220e None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:33.171 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:33.547 5285 INFO heat.engine.environment [req-b541b82b-6d99-4c50-bc67-1af72df644a0 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:34.266 5285 INFO heat.engine.environment [req-8e149c60-78af-459f-96d7-f78c432d96a3 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:34.304 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:35.013 5285 INFO heat.engine.environment [req-be4b4ca5-9bee-4e18-8aba-29645d6ccf97 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:35.455 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:35.612 5285 INFO heat.engine.environment [req-6eb28b38-94fe-41dd-9dd7-b6253772e106 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:36.194 5285 INFO heat.engine.environment [req-8659ac53-a196-4d45-9e0e-125a07020d21 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:36.588 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:36.853 5285 INFO heat.engine.environment [req-85b67ddd-b952-4cd4-8956-2bdf53bd02e2 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:37.458 5285 INFO heat.engine.environment [req-d7a4e42c-10eb-4c94-9452-f08068d1cd2d None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:37.720 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-api.log <==
+2014-08-06 08:53:37.995 22938 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+
+==> /var/log/heat/heat-engine.log <==
+2014-08-06 08:53:38.070 5285 INFO heat.engine.environment [req-ec42a6a3-459d-4e71-945f-a2bc3b8c2fdd None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+2014-08-06 08:53:38.852 5285 INFO urllib3.connectionpool [-] Starting new HTTP connection (1): 10.248.24.40
+2014-08-06 08:53:38.932 5285 INFO heat.engine.environment [req-49fb1690-5ded-4d58-a3e5-f705fa35e6c7 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+

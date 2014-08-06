@@ -1,0 +1,2 @@
+resource_registry:
+  "Software::Custom": "file:///root/test_env/custom.yaml"
