@@ -1,0 +1,10 @@
+Command being used to create the stack:
+```
+heat stack-create test --template-file=example_template.yaml -e environment.yaml --parameters="key_name=uberj-key;public_net_id=7b3170a7-3c5f-465f-8bbf-6dd53a3ac6ae"
+```
+The lines in the log file that look like:
+```
+2014-08-06 08:56:52.221 5285 INFO heat.engine.environment [req-cd61e93e-39ba-4377-8a0b-271ec09596f2 None] Registering Software::Custom -> file:///root/test_env/custom.yaml
+```
+Are generated *only* when I do 'heat stack-list'.
+
