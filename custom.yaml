@@ -20,6 +20,7 @@ resources:
   custom_deployment:
     type: OS::Heat::SoftwareDeployment
     properties:
+      signal_transport: HEAT_SIGNAL
       config:
         get_resource: custom_config
       server:

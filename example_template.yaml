@@ -7,7 +7,7 @@ parameters:
     default: m1.medium
   image:
     type: string
-    default: cirros
+    default: ubuntu-trusty-amd64-0.1.0-2014073016
   public_net_id:
     type: string
     default: public
@@ -35,6 +35,24 @@ parameters:
     description: End of private network IP address allocation pool
 
 resources:
+  secgroup-ssh:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      description: Enable traffic external traffic on SSH.
+      rules: [{protocol: tcp, port_range_max: 22, port_range_min: 22},]
+
+  secgroup-web:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      description: Enable traffic external traffic on SSH.
+      rules: [{protocol: tcp, port_range_max: 80, port_range_min: 80},]
+
+  secgroup-internal:
+    type: OS::Neutron::SecurityGroup
+    properties:
+      description: Enable all traffic between instances.
+      rules: [{protocol: tcp, port_range_max: 65535, port_range_min: 1, remote_mode: remote_group_id},]
+
   private_net:
     type: OS::Neutron::Net
     properties:
@@ -80,6 +98,10 @@ resources:
       network_id: { get_resource: private_net }
       fixed_ips:
         - subnet_id: { get_resource: private_subnet }
+      security_groups:
+        - { get_resource: secgroup-internal }
+        - { get_resource: secgroup-web }
+        - { get_resource: secgroup-ssh }
 
   server1_floating_ip:
     type: OS::Neutron::FloatingIP
@@ -87,7 +109,7 @@ resources:
       floating_network_id: { get_param: public_net_id }
       port_id: { get_resource: server1_port }
 
-  mysql_server_deployment:
+  custom_deployment:
     type: Software::Custom
     properties:
       foo: bar
